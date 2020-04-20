@@ -1,4 +1,4 @@
-Example tesc cases on UBS page
+Example test cases on UBS page
 
 Test are written in C# with specflow and the runner is SpecRun
 
