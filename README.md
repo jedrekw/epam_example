@@ -1,9 +1,7 @@
-Example test cases on UBS page
+UBS page test cases
 
-Test are written in C# with specflow and the runner is SpecRun
+Tests are written in C# with specflow and the runner is SpecRun.
 
-
-
-Video showing how tests run
+Video showing how tests run:
 
 https://streamable.com/uts25f
