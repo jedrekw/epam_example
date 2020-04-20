@@ -8,7 +8,7 @@ namespace EPAM_testy
     {
         public string homepage = "https://www.ubs.com/global/en.html";
 
-        public By AcceptPrivacySettings = By.CssSelector(".actionbutton__color--standardbuttondark .actionbutton__txtbody");
+        public By AcceptPrivacySettingsButton = By.CssSelector(".actionbutton__color--standardbuttondark .actionbutton__txtbody");
         public By ChangeLanguageButton = By.LinkText("DE");
         public By SearchButton = By.CssSelector(".headerSearch__toggle");
         public By SearchField = By.Id("pagesearchfield");
