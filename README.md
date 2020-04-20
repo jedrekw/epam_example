@@ -1,4 +1,4 @@
-UBS page test cases
+Test cases for UBS homepage
 
 Tests are written in C# with specflow and the runner is SpecRun.
 
