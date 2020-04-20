@@ -20,16 +20,7 @@ namespace EPAM_testy
         public void GivenIAmOnHomepage()
         {
             sel.Driver.Navigate().GoToUrl(homepage);
-            try
-            {
-                sel.Driver.SwitchTo().Frame(0);
-                sel.Click(AcceptPrivacySettings);
-                sel.Driver.SwitchTo().DefaultContent();
-            }
-            catch (Exception e)
-            {
-                sel.Driver.SwitchTo().DefaultContent();
-            }
+            AcceptPrivacySettings();
         }
 
         [When(@"I click change language button")]
@@ -37,30 +28,21 @@ namespace EPAM_testy
         {
 
             sel.Click(ChangeLanguageButton);
-            try
-            {
-                sel.Driver.SwitchTo().Frame(0);
-                sel.Click(AcceptPrivacySettings);
-                sel.Driver.SwitchTo().DefaultContent();
-            }
-            catch (Exception e)
-            {
-                sel.Driver.SwitchTo().DefaultContent();
-            }
+            AcceptPrivacySettings();
         }
 
         [Then(@"I should see text ""(.*)"" on page")]
         public void ThenIShouldSeeTextOnPage(string p0)
         {
             new WebDriverWait(sel.Driver, TimeSpan.FromSeconds(3000)).Until(ExpectedConditions.TextToBePresentInElement(sel.Driver.FindElement(By.TagName("body")), p0));
-            //IWebElement bodyTag = sel.Driver.FindElement(By.TagName("body"));
-            //Assert.IsTrue(bodyTag.Text.Contains(p0));
         }
 
         [Then(@"I should see text ""(.*)"" in search results")]
         public void ThenIShouldSeeTextInSearchResults(string p0)
         {
-            new WebDriverWait(sel.Driver, TimeSpan.FromSeconds(3000)).Until(ExpectedConditions.TextToBePresentInElement(sel.Driver.FindElement(SearchResults), p0));
+            IWebElement SearchResultsDiv = sel.Driver.FindElement(SearchResults);
+            Assert.IsTrue(SearchResultsDiv.Text.Contains(p0));
+            //new WebDriverWait(sel.Driver, TimeSpan.FromSeconds(3000)).Until(ExpectedConditions.TextToBePresentInElement(sel.Driver.FindElement(SearchResults), p0));
         }
 
         [When(@"I search for ""(.*)""")]
@@ -88,6 +70,20 @@ namespace EPAM_testy
             new WebDriverWait(sel.Driver, TimeSpan.FromSeconds(3000)).Until(ExpectedConditions.TextToBePresentInElement(sel.Driver.FindElement(By.XPath("//div/span/span")), "United Kingdom"));
             String currentURL = sel.Driver.Url;
             Assert.AreEqual(currentURL, "https://www.ubs.com/uk/en.html");
+        }
+
+        public void AcceptPrivacySettings()
+        {
+            try
+            {
+                sel.Driver.SwitchTo().Frame(0);
+                sel.Click(AcceptPrivacySettingsButton);
+                sel.Driver.SwitchTo().DefaultContent();
+            }
+            catch (Exception e)
+            {
+                sel.Driver.SwitchTo().DefaultContent();
+            }
         }
     }
 }
